@@ -1,6 +1,6 @@
 import { Link } from "react-router"
 
-export default function LastQuiz() {
+export default function LastQuiz({ latestQuiz }) {
     return (
         <div className="wrapperQ">
             <div className="homeContainer">
@@ -14,11 +14,17 @@ export default function LastQuiz() {
 
                 <div className="homeRight">
                     <h2>Last Added Quiz</h2>
-                    <div className="lastQuizCard">
-                        <h3>Title</h3>
-                        <p>Mission Level: Category</p>
-                    </div>
-                    <Link to={`/quiz/#`} className="homeStartButton">Start Mission</Link>
+                    {latestQuiz?.title ? (
+                        <>
+                            <div className={style.lastQuizCard}>
+                                <h3>{latestQuiz.title}</h3>
+                                <p>Mission Level: {latestQuiz.category}</p>
+                            </div>
+                            <Link to={`/quiz/${latestQuiz.category}`} className={style.homeStartButton}>Start Mission</Link>
+                        </>
+                    ) : (
+                        <p>No quizzes available yet.</p>
+                    )}
                 </div>
             </div>
         </div>
