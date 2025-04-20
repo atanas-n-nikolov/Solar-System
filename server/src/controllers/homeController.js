@@ -15,9 +15,9 @@ homeController.get('/', asyncHandler(async (req, res) => {
     const fact = await Facts.findOne({ date: dateString });
 
     return res.status(200).json({
-        fact: fact || [],
-        planets,
-        latestQuiz: latestQuiz || []
+        fact: fact || null,
+        planets: planets.length ? planets : null,
+        latestQuiz: latestQuiz || null
     });
 }));
 

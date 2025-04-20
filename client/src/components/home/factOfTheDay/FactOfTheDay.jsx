@@ -4,7 +4,7 @@ export default function FactOfTheDay({ fact }) {
     };
     return (
         <article className="fact">
-            <div className="randomDay">
+            <div className="sectionWrapper" style={{ alignItems: "center", gap: "2em", padding: "10em 0"}}>
                 <div className="factHeader">
                     <h2>
                         DID YOU KNOW<br />
