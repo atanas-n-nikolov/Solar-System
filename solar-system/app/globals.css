@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+[data-theme='white'] {
+  --bg-color: #ffffff;
+  --text-color: #1c1c1c;
+  --muted-text: #4a5568;
+  --accent-color: #f4d03f;
+  --highlight-bg: #ffffff;
+  --highlight-text: #000000;
+}
+
+[data-theme='dark'] {
+  --bg-color: #080920;
+  --text-color: #f5f5f5;
+  --muted-text: #a0aec0;
+  --accent-color: #003366;
+  --highlight-bg: #ffffff;
+  --highlight-text: #000000;
+}
+
+.font-montserrat {
+  font-family: var(--font-montserrat);
+}
+
+.font-pacifico {
+  font-family: var(--font-pacifico);
+}

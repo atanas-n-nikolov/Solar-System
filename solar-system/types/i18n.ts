@@ -1,0 +1,24 @@
+export type Translation = {
+  title: string;
+  description: string;
+  keywords?: string[];
+  author?: string;
+  home: string;
+  planets: string;
+  quiz: string;
+  leaderboard: string;
+  signup: string;
+  logout: string;
+  login?: string;
+  planet_fact_title: string;
+  eclipse_title: string;
+  last_title: string;
+  auth_email: string;
+  auth_password: string;
+  auth_firstname: string;
+  auth_lastname: string;
+  auth_repeat_password: string;
+  questions_qty: string;
+  answered_questions: string;
+  questions_score: string;
+};

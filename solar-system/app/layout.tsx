@@ -1,0 +1,79 @@
+import type { Metadata } from 'next';
+import { Roboto, Montserrat, Pacifico } from 'next/font/google';
+import bgJson from '@/locals/bg.json';
+import enJson from '@/locals/en.json';
+import type { Translation } from '@/types/i18n';
+import { cookies } from 'next/headers';
+import { LanguageProvider } from '@/context/languageProvider';
+import { ThemeProvider } from '@/context/themeProvider';
+import './globals.css';
+
+const defaultUrl = process.env.VERCEL_URL
+  ? `https://${process.env.VERCEL_URL}`
+  : 'http://localhost:3000';
+
+const roboto = Roboto({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '700'],
+  variable: '--font-roboto',
+});
+
+const montserrat = Montserrat({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700', '800', '900'],
+  variable: '--font-montserrat',
+});
+
+const pacifico = Pacifico({
+  subsets: ['latin'],
+  weight: '400',
+  variable: '--font-pacifico',
+});
+
+const bgDict: Translation = bgJson as Translation;
+const enDict: Translation = enJson as Translation;
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { lang?: 'bg' | 'en' };
+}): Promise<Metadata> {
+  const lang = params.lang || 'en';
+  const dict = lang === 'bg' ? bgDict : enDict;
+
+  return {
+    title: dict.title,
+    description: dict.description,
+    keywords: dict.keywords,
+    authors: [{ name: dict.author }],
+    metadataBase: new URL(defaultUrl),
+  };
+}
+
+export default async function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  const cookieStore = await cookies();
+  const language = (cookieStore.get('language')?.value as 'en' | 'bg') || 'en';
+  const theme = cookieStore.get('theme')?.value || 'white';
+  const initialDarkMode = theme === 'dark';
+  return (
+    <html
+      lang={language}
+      suppressHydrationWarning
+      data-theme={initialDarkMode ? 'dark' : 'white'}
+    >
+      <body
+        className={`flex flex-col min-h-screen ${montserrat.variable} ${roboto.variable} ${pacifico.variable}`}
+      >
+        <LanguageProvider initialLanguage={language}>
+          <ThemeProvider initialDarkMode={initialDarkMode}>
+            <main className='flex flex-col flex-1'>{children}</main>
+          </ThemeProvider>
+        </LanguageProvider>
+      </body>
+    </html>
+  );
+}
