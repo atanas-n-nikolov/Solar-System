@@ -1,12 +1,14 @@
 import type { Metadata } from 'next';
 import { Roboto, Montserrat, Pacifico } from 'next/font/google';
-import bgJson from '@/locals/bg.json';
-import enJson from '@/locals/en.json';
+import bgJson from '@/locales/bg.json';
+import enJson from '@/locales/en.json';
 import type { Translation } from '@/types/i18n';
 import { cookies } from 'next/headers';
 import { LanguageProvider } from '@/context/languageProvider';
 import { ThemeProvider } from '@/context/themeProvider';
 import './globals.css';
+import Header from '@/components/header/Header';
+import Footer from '@/components/footer/Footer';
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
@@ -70,7 +72,9 @@ export default async function RootLayout({
       >
         <LanguageProvider initialLanguage={language}>
           <ThemeProvider initialDarkMode={initialDarkMode}>
+            <Header />
             <main className='flex flex-col flex-1'>{children}</main>
+            <Footer />
           </ThemeProvider>
         </LanguageProvider>
       </body>

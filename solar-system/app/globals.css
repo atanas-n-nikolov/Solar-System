@@ -4,20 +4,31 @@
 
 [data-theme='white'] {
   --bg-color: #ffffff;
-  --text-color: #1c1c1c;
-  --muted-text: #4a5568;
+  --text-color: #0a0909;
+  --muted-text: #0a0909;
   --accent-color: #f4d03f;
   --highlight-bg: #ffffff;
   --highlight-text: #000000;
 }
 
 [data-theme='dark'] {
-  --bg-color: #080920;
+  --bg-color: #1d1e27;
   --text-color: #f5f5f5;
-  --muted-text: #a0aec0;
+  --muted-text: #ffffffcc;
   --accent-color: #003366;
   --highlight-bg: #ffffff;
   --highlight-text: #000000;
+}
+
+html {
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out;
 }
 
 .font-montserrat {
