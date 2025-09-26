@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Roboto, Montserrat, Pacifico } from 'next/font/google';
+import { Roboto, Montserrat, Orbitron } from 'next/font/google';
 import bgJson from '@/locales/bg.json';
 import enJson from '@/locales/en.json';
 import type { Translation } from '@/types/i18n';
@@ -26,10 +26,10 @@ const montserrat = Montserrat({
   variable: '--font-montserrat',
 });
 
-const pacifico = Pacifico({
+const orbitron = Orbitron({
   subsets: ['latin'],
-  weight: '400',
-  variable: '--font-pacifico',
+  weight: ['400', '500', '600', '700', '800', '900'],
+  variable: '--font-orbitron',
 });
 
 const bgDict: Translation = bgJson as Translation;
@@ -68,7 +68,7 @@ export default async function RootLayout({
       data-theme={initialDarkMode ? 'dark' : 'white'}
     >
       <body
-        className={`flex flex-col min-h-screen ${montserrat.variable} ${roboto.variable} ${pacifico.variable}`}
+        className={`flex flex-col min-h-screen ${montserrat.variable} ${roboto.variable} ${orbitron.variable}`}
       >
         <LanguageProvider initialLanguage={language}>
           <ThemeProvider initialDarkMode={initialDarkMode}>

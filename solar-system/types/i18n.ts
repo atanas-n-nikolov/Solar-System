@@ -21,4 +21,8 @@ export type Translation = {
   contact_us?: string;
   terms: string;
   about: string;
+  days: string;
+  hours: string;
+  minutes: string;
+  seconds: string;
 };

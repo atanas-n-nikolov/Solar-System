@@ -6,5 +6,12 @@
   "signup": "Get started",
   "contact_us": "Contact us",
   "about": "About us",
-  "terms": "Terms & conditions"
+  "terms": "Terms & conditions",
+  "fact_title": "Stellar fact",
+  "fact_when": "IN: ",
+  "eclipse_title": "Next solar eclipse",
+  "days": "DAYS",
+  "hours": "HOURS",
+  "minutes": "MINUTES",
+  "seconds": "SECONDS"
 }
