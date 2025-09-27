@@ -13,5 +13,7 @@
   "days": "DAYS",
   "hours": "HOURS",
   "minutes": "MINUTES",
-  "seconds": "SECONDS"
+  "seconds": "SECONDS",
+  "dwarf_link": "Explore Dwarf Planets",
+  "apod_title": "Cosmic Snapshot"
 }

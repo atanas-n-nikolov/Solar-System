@@ -7,6 +7,7 @@ export type Translation = {
   planets: string;
   leaderboard: string;
   signup: string;
+  apod_title: string;
   planet_fact_title?: string;
   eclipse_title?: string;
   last_title?: string;
@@ -19,6 +20,7 @@ export type Translation = {
   answered_questions?: string;
   questions_score?: string;
   contact_us?: string;
+  dwarf_link?: string;
   terms: string;
   about: string;
   days: string;

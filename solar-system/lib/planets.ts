@@ -1,4 +1,4 @@
-import { Planet } from '@/types/Planets';
+import { Planet } from '@/types/planet';
 import { createClient } from '@/lib/supabase/client';
 
 export async function getPlanets(): Promise<Planet[]> {

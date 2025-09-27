@@ -1,0 +1,9 @@
+export type Started = {
+  id: string;
+  title_en: string;
+  title_bg: string;
+  description_en: string;
+  description_bg: string;
+  image_url: string;
+  image_url_2: string;
+};
