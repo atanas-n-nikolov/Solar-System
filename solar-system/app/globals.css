@@ -134,3 +134,35 @@ body {
 .animate-pulse-radio2 {
   animation: pulse2 1s ease-out infinite;
 }
+
+.gradient-ring {
+  position: relative;
+  border-radius: 9999px;
+}
+
+.gradient-ring::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 2px;
+  background: linear-gradient(90deg, #ff5f68 0%, #ae4bce 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: destination-out;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.gradient-ring:focus-within::after {
+  opacity: 1;
+}
+
+.google-btn:hover {
+  box-shadow: 0px 1px 8px 0px #3f486729;
+}
+
+.test3:hover {
+  box-shadow: 0px 1px 8px 0px rgba(63, 72, 103, 0.16);
+}

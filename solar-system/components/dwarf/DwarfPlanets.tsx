@@ -4,6 +4,7 @@ import en from '@/locales/en.json';
 import bg from '@/locales/bg.json';
 import { Dwarf } from '@/types/dwarf';
 import Link from 'next/link';
+import Arrow from '@/components/svg/Arrow';
 
 export default function DwarfPlanets({ dwarf }: { dwarf: Dwarf | null }) {
   const { language } = useLanguage();
@@ -25,7 +26,7 @@ export default function DwarfPlanets({ dwarf }: { dwarf: Dwarf | null }) {
     const parts = text.split(new RegExp(`(${highlightWords.join('|')})`, 'gi'));
     return parts.map((part, i) =>
       highlightWords.includes(part) ? (
-        <span key={i} className='font-bold'>
+        <span key={i} className='font-bold text-white'>
           {part}
         </span>
       ) : (
@@ -48,18 +49,7 @@ export default function DwarfPlanets({ dwarf }: { dwarf: Dwarf | null }) {
           className='flex items-center gap-2 py-2 px-6 rounded-full text-white bg-gradient-to-r from-[#FF5F68] to-[#AE4BCE]'
         >
           {t.dwarf_link}
-          <svg
-            width={16}
-            height={16}
-            viewBox='0 0 16 16'
-            fill='none'
-            xmlns='http://www.w3.org/2000/svg'
-          >
-            <path
-              d='M13.7833 7.41L9.68667 3.31333L8.98 4.02L12.46 7.5H2V8.5H12.46L8.98 11.98L9.68667 12.6867L13.7833 8.59C14.1067 8.26667 14.1067 7.73667 13.7833 7.41Z'
-              fill='white'
-            />
-          </svg>
+          <Arrow />
         </Link>
       </header>
       <aside className='relative h-[296px] w-[758px] justify-center flex flex-col gap-2 p-10 bg-[#42465E] rounded-[32px] overflow-hidden'>
@@ -67,7 +57,7 @@ export default function DwarfPlanets({ dwarf }: { dwarf: Dwarf | null }) {
           className='absolute -bottom-32 inset-0 bg-center bg-no-repeat bg-cover opacity-20'
           style={{ backgroundImage: `url(${dwarf.image_url})` }}
         ></div>
-        <h3 className='text-white text-2xl font-light leading-8 relative z-10'>
+        <h3 className='text-[#ffffffcc] text-2xl font-light leading-8 relative z-10'>
           {renderDescription(description)}
         </h3>
       </aside>

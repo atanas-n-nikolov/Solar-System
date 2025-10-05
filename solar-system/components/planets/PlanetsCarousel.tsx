@@ -7,6 +7,8 @@ import bg from '@/locales/bg.json';
 import { useLanguage } from '@/context/languageProvider';
 import Link from 'next/link';
 import { useTheme } from '@/context/themeProvider';
+import CarouselLeftArrowIcon from '@/components/svg/CarouselLeftArrowIcon';
+import CarouselRightArrowIcon from '@/components/svg/CarouselRightArrowIcon';
 
 export default function PlanetsCarousel({ planets }: { planets: Planet[] }) {
   const { darkMode } = useTheme();
@@ -46,7 +48,7 @@ export default function PlanetsCarousel({ planets }: { planets: Planet[] }) {
     >
       <div className='relative w-full max-w-[1216px] h-full min-h-[912px] mx-auto'>
         <h1 className='absolute font-light top-[201px] tracking-wider uppercase bg-gradient-to-r from-[#FF5F68] to-[#AE4BCE] bg-clip-text text-transparent'>
-          Explore the solar system
+          {t.planet_title}
         </h1>
         {planets.map((planet, idx) => {
           const lowRes = planet.image_url.replace(
@@ -96,40 +98,29 @@ export default function PlanetsCarousel({ planets }: { planets: Planet[] }) {
                   >
                     {planetTitle} {fact}
                   </p>
-
-                  {/* <Link
-                    href='/planets'
-                    aria-label={`See more about ${name}`}
-                    className={`uppercase mt-4 inline-block font-semibold border-b border-gray-600 opacity-0 ${
-                      posIndex === 1 && !showDetail ? 'animate-showContent' : ''
-                    } ${
-                      darkMode
-                        ? 'hover:text-[#f4d03f] hover:border-[#f4d03f]'
-                        : 'hover:text-[#ff6817] hover:border-[#ff6817]'
-                    }`}
-                    style={{ animationDelay: '1s' }}
-                  >
-                    See More &#8599;
-                  </Link> */}
                 </div>
               )}
             </article>
           );
         })}
-        <div className='absolute left-0 top-1/2 -translate-y-full flex gap-4 justify-between z-50'>
+        <div className='absolute left-0 top-1/2 -translate-y-full flex gap-2 justify-between z-50'>
           <button
             onClick={prevPlanet}
             aria-label='Previous planet'
-            className='w-10 h-10 rounded-full border border-gray-400 flex items-center justify-center text-lg'
+            className={`w-10 h-10 rounded-full flex items-center justify-center text-lg ${
+              darkMode ? 'bg-[#FFFFFF1A]' : 'border border-[#CDD0DB]'
+            }`}
           >
-            ‹
+            <CarouselLeftArrowIcon pathFill={darkMode ? 'white' : '#0A0909'} />
           </button>
           <button
             onClick={nextPlanet}
             aria-label='Next planet'
-            className='w-10 h-10 rounded-full border border-gray-400 flex items-center justify-center text-lg'
+            className={`w-10 h-10 rounded-full flex items-center justify-center text-lg ${
+              darkMode ? 'bg-[#FFFFFF1A]' : 'border border-[#CDD0DB]'
+            }`}
           >
-            ›
+            <CarouselRightArrowIcon pathFill={darkMode ? 'white' : '#0A0909'} />
           </button>
         </div>
         <div className='flex items-center gap-2 absolute top-[591px] text-sm leading-[22px] font-light'>

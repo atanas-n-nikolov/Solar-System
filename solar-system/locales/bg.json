@@ -1,9 +1,20 @@
 {
   "planet_fact_title": "Знаеш ли че? ",
+  "planet_title": "Изследвай Слънчевата система",
   "home": "Начало",
   "planets": "Планети",
   "leaderboard": "Класации",
   "signup": "Започни",
+  "login": "Влез",
+  "logout": "Излез",
+  "form_error": "Моля въведете валидна информация. ",
+  "form_f_name": "Име",
+  "form_l_name": "Фамилия",
+  "form_email": "Въведете имейл",
+  "form_password": "Въведете парола",
+  "form_repeat_password": "Повтори парола",
+  "or": "ИЛИ",
+  "with_google": "Продължи с Google",
   "contact_us": "Свържи се",
   "about": "За нас",
   "terms": "Общи условия",
@@ -15,5 +26,10 @@
   "minutes": "МИНУТИ",
   "seconds": "СЕКУНДИ",
   "dwarf_link": "Открий джуджетата",
-  "apod_title": "Космически кадър"
+  "apod_title": "Космически кадър",
+  "auth_email": "Имейл:",
+  "auth_password": "Парола:",
+  "auth_firstname": "Име:",
+  "auth_lastname": "Фамилия:",
+  "auth_repeat_password": "Повтори паролата:"
 }

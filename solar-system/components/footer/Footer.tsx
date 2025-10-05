@@ -8,14 +8,26 @@ import Image from 'next/image';
 import en from '@/locales/en.json';
 import bg from '@/locales/bg.json';
 import NavigationLinks, { NavLink } from '../header/NavigationLinks';
+import { usePathname } from 'next/navigation';
 
 export default function Footer() {
   const { language } = useLanguage();
   const { darkMode } = useTheme();
+  const pathname = usePathname();
 
   const translations = { en, bg };
   const t = translations[language];
   const logo = darkMode ? Logo_white : Logo_black;
+
+  if (pathname === '/signup' || pathname === '/signin') {
+    return (
+      <footer className='w-full h-[88px] max-w-[1216px] mx-auto flex py-6 items-center justify-start relative'>
+        <p className='text-[color:var(--muted-text)] font-light'>
+          © 2025 Solar System - All Rights Reserved
+        </p>
+      </footer>
+    );
+  }
 
   const links: NavLink[] = [
     { href: '/about', label: t.about, auth: 'any' },
@@ -30,7 +42,7 @@ export default function Footer() {
       </Link>
       <div className='flex gap-8 items-center list-none font-light'>
         <nav className='flex gap-8'>
-          <NavigationLinks links={links} t={t} />
+          <NavigationLinks links={links} />
           <p className='text-[color:var(--muted-text)]'>
             © 2025 Solar System - All Rights Reserved
           </p>

@@ -1,9 +1,20 @@
 {
   "planet_fact_title": "Did you know? ",
+  "planet_title": "Explore the Solar System",
   "home": "Home",
   "planets": "Planets",
   "leaderboard": "Leaderboard",
   "signup": "Get started",
+  "login": "Log in",
+  "logout": "Logout",
+  "form_error": "Please enter a valid information.",
+  "form_f_name": "First name",
+  "form_l_name": "Last name",
+  "form_email": "Enter your email",
+  "form_password": "Enter your password",
+  "form_repeat_password": "Repeat password",
+  "or": "OR",
+  "with_google": "Continue with Google",
   "contact_us": "Contact us",
   "about": "About us",
   "terms": "Terms & conditions",
@@ -15,5 +26,10 @@
   "minutes": "MINUTES",
   "seconds": "SECONDS",
   "dwarf_link": "Explore Dwarf Planets",
-  "apod_title": "Cosmic Snapshot"
+  "apod_title": "Cosmic Snapshot",
+  "auth_email": "Email:",
+  "auth_password": "Password:",
+  "auth_firstname": "First name:",
+  "auth_lastname": "Last name:",
+  "auth_repeat_password": "Repeat password:"
 }
