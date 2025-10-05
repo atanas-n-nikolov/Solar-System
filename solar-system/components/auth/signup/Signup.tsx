@@ -89,7 +89,6 @@ export default function Signup({ section }: SignupProps) {
         formDescription={form_description}
         onSubmit={onSubmit}
         inputFields={inputFields}
-        t={t}
       />
       <div className='absolute top-0 bottom-0 right-0 w-[58.85vw] pointer-events-none bg-gray-200'>
         <Image

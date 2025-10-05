@@ -14,12 +14,13 @@ export type NavLink = {
 
 interface NavigationLinksProps {
   vertical?: boolean;
+  links?: NavLink[];
   t: Translation;
   onLinkClick?: () => void;
 }
 
 export default function NavigationLinks({
-  vertical,
+  links: linksArr,
   t,
   onLinkClick,
 }: NavigationLinksProps) {
@@ -46,17 +47,23 @@ export default function NavigationLinks({
     };
   }, []);
 
-  const links = [
-    { href: '/', label: t?.home, auth: 'any' },
-    { href: '/planets', label: t?.planets, auth: 'any' },
-    { href: '/contact', label: t?.contact_us, auth: 'any' },
-    ...(user
-      ? [
-          { href: '/score', label: t?.leaderboard, auth: 'user' },
-          { href: '/logout', label: t?.logout, auth: 'user' },
-        ]
-      : []),
-  ];
+  const links: NavLink[] = linksArr
+    ? linksArr
+    : [
+        { href: '/', label: t.home ?? '', auth: 'any' as const },
+        { href: '/planets', label: t.planets ?? '', auth: 'any' as const },
+        { href: '/contact', label: t.contact_us ?? '', auth: 'any' as const },
+        ...(user
+          ? [
+              {
+                href: '/score',
+                label: t.leaderboard ?? '',
+                auth: 'user' as const,
+              },
+              { href: '/logout', label: t.logout ?? '', auth: 'user' as const },
+            ]
+          : []),
+      ];
 
   return (
     <ul className='flex gap-8'>

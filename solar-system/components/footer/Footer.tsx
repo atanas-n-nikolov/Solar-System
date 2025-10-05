@@ -30,9 +30,9 @@ export default function Footer() {
   }
 
   const links: NavLink[] = [
-    { href: '/about', label: t.about, auth: 'any' },
-    { href: '/terms', label: t.terms, auth: 'any' },
-    { href: '/contact', label: t.contact_us, auth: 'any' },
+    { href: '/about', label: t?.about, auth: 'any' },
+    { href: '/terms', label: t?.terms, auth: 'any' },
+    { href: '/contact', label: t?.contact_us, auth: 'any' },
   ];
 
   return (
@@ -42,7 +42,7 @@ export default function Footer() {
       </Link>
       <div className='flex gap-8 items-center list-none font-light'>
         <nav className='flex gap-8'>
-          <NavigationLinks links={links} />
+          <NavigationLinks links={links} t={t} />
           <p className='text-[color:var(--muted-text)]'>
             © 2025 Solar System - All Rights Reserved
           </p>

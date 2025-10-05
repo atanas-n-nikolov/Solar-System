@@ -1,6 +1,6 @@
 'use client';
 import { z } from 'zod';
-import { signInUser, signUpUser } from '@/lib/auth';
+import { signInUser } from '@/lib/auth';
 import { useRouter } from 'next/navigation';
 import en from '@/locales/en.json';
 import bg from '@/locales/bg.json';
@@ -11,8 +11,10 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 const signinSchema = z.object({
-  email: z.email('Plese enter a valid email address'),
-  password: z.string().min(6, 'Password must be at least 6 characters'),
+  email: z.email({ message: 'Plese enter a valid email address' }),
+  password: z
+    .string()
+    .min(6, { message: 'Password must be at least 6 characters' }),
 });
 
 type SigninFormData = z.infer<typeof signinSchema>;
@@ -75,7 +77,6 @@ export default function Signin({ section }: SigninProps) {
         formDescription={form_description}
         onSubmit={onSubmit}
         inputFields={inputFields}
-        t={t}
       />
       <div className='absolute top-0 bottom-0 right-0 w-[58.85vw] pointer-events-none bg-gray-200'>
         <Image

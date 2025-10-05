@@ -18,7 +18,7 @@ export function useFormValidator<T extends FormType>(type: T) {
   const validate = (data: SchemaMap[T]) => {
     const result = validateForm(type, data);
     const filtered = Object.fromEntries(
-      Object.entries(result).filter(([_, v]) => v !== null)
+      Object.entries(result).filter(([, v]) => v !== null)
     ) as Partial<Record<keyof SchemaMap[T], string>>;
     setErrors(filtered);
     return filtered;

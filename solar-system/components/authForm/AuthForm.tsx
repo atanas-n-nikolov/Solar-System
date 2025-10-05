@@ -1,7 +1,7 @@
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
-import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
+import { FieldValues, Resolver, SubmitHandler, useForm } from 'react-hook-form';
 import { useLanguage } from '@/context/languageProvider';
 import en from '@/locales/en.json';
 import bg from '@/locales/bg.json';
@@ -12,17 +12,15 @@ import Arrow from '@/components/svg/Arrow';
 import Link from 'next/link';
 import GoogleLogo from '@/components/svg/GoogleLogo';
 
-import { ZodType } from 'zod';
 import CreateInput from './CreateInput';
-import { ZodTypeDef } from 'zod/v3';
+import { ZodObject, ZodRawShape } from 'zod';
 
 type AuthFormProps<TFormData extends FieldValues> = {
-  schema: ZodType<any, ZodTypeDef, any>;
+  schema: ZodObject<ZodRawShape>;
   formTitle: string;
   formDescription: string;
   onSubmit: SubmitHandler<TFormData>;
   inputFields: string[];
-  t: Record<string, string>;
 };
 
 export default function AuthForm<TFormData extends FieldValues>({
@@ -31,7 +29,6 @@ export default function AuthForm<TFormData extends FieldValues>({
   formDescription,
   onSubmit,
   inputFields,
-  t: tProp,
 }: AuthFormProps<TFormData>) {
   const { language } = useLanguage();
   const t = { en, bg }[language];
@@ -41,7 +38,7 @@ export default function AuthForm<TFormData extends FieldValues>({
     handleSubmit,
     formState: { errors },
   } = useForm<TFormData>({
-    resolver: zodResolver(schemaProp),
+    resolver: zodResolver(schemaProp) as Resolver<TFormData>,
     shouldFocusError: false,
   });
 
