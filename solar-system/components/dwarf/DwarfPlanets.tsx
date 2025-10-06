@@ -22,6 +22,11 @@ export default function DwarfPlanets({ dwarf }: { dwarf: Dwarf | null }) {
       ? ['Pluto', 'Ceres', 'Eris', 'Haumea', 'Makemake']
       : ['Плутон', 'Церера', 'Ерида', 'Хаумеа', 'Макемаке'];
 
+  const optimizedUrl = dwarf.image_url.replace(
+    '/upload/',
+    '/upload/f_auto,q_auto,w_758/'
+  );
+
   const renderDescription = (text: string) => {
     const parts = text.split(new RegExp(`(${highlightWords.join('|')})`, 'gi'));
     return parts.map((part, i) =>
@@ -55,7 +60,7 @@ export default function DwarfPlanets({ dwarf }: { dwarf: Dwarf | null }) {
       <aside className='relative h-[296px] w-[758px] justify-center flex flex-col gap-2 p-10 bg-[#42465E] rounded-[32px] overflow-hidden'>
         <div
           className='absolute -bottom-32 inset-0 bg-center bg-no-repeat bg-cover opacity-20'
-          style={{ backgroundImage: `url(${dwarf.image_url})` }}
+          style={{ backgroundImage: `url(${optimizedUrl})` }}
         ></div>
         <h3 className='text-[#ffffffcc] text-2xl font-light leading-8 relative z-10'>
           {renderDescription(description)}

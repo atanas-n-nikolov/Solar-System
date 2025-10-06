@@ -19,7 +19,7 @@ export default function Footer() {
   const t = translations[language];
   const logo = darkMode ? Logo_white : Logo_black;
 
-  if (pathname === '/signup' || pathname === '/signin') {
+  if (pathname === '/signup' || pathname === '/login') {
     return (
       <footer className='w-full h-[88px] max-w-[1216px] mx-auto flex py-6 items-center justify-start relative'>
         <p className='text-[color:var(--muted-text)] font-light'>

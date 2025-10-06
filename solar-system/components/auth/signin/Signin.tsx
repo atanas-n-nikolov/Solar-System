@@ -28,22 +28,27 @@ export default function Signin({ section }: SigninProps) {
   const t = { en, bg }[language];
   const router = useRouter();
 
-  const signup = section[0];
+  const signin = section[0];
 
   const form_title =
-    language === 'en' ? signup.form_title_en : signup.form_title_bg;
+    language === 'en' ? signin.form_title_en : signin.form_title_bg;
   const form_description =
-    language === 'en' ? signup.form_description_en : signup.form_description_bg;
+    language === 'en' ? signin.form_description_en : signin.form_description_bg;
   const hero_title =
-    language === 'en' ? signup.hero_title_en : signup.hero_title_bg;
+    language === 'en' ? signin.hero_title_en : signin.hero_title_bg;
   const hero_description_start =
     language === 'en'
-      ? signup.hero_description_start_en
-      : signup.hero_description_start_bg;
+      ? signin.hero_description_start_en
+      : signin.hero_description_start_bg;
   const hero_description_end =
     language === 'en'
-      ? signup.hero_description_end_en
-      : signup.hero_description_end_bg;
+      ? signin.hero_description_end_en
+      : signin.hero_description_end_bg;
+
+  const optimizedUrl = signin.image_url.replace(
+    '/upload/',
+    '/upload/f_auto,q_auto,w_758/'
+  );
 
   const inputFields = ['email', 'password'];
   if (!section) return null;
@@ -80,7 +85,7 @@ export default function Signin({ section }: SigninProps) {
       />
       <div className='absolute top-0 bottom-0 right-0 w-[58.85vw] pointer-events-none bg-gray-200'>
         <Image
-          src={signup.image_url}
+          src={optimizedUrl}
           alt='Signup background'
           fill
           style={{ objectFit: 'cover' }}

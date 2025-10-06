@@ -24,6 +24,9 @@ export default function Eclipse({ eclipse }: { eclipse: EclipseType[] }) {
 
   const [timeLeft, setTimeLeft] = useState<string[]>(['00', '00', '00', '00']);
 
+  const optimizedUrl =
+    'https://res.cloudinary.com/duvx9lwgf/image/upload/f_auto,q_auto/v1755526497/solar-eclipse_vrzwpk.png';
+
   useEffect(() => {
     setTimeLeft(DateFormat(nextEclipse.date));
 
@@ -43,8 +46,8 @@ export default function Eclipse({ eclipse }: { eclipse: EclipseType[] }) {
     >
       <header className='relative h-[600px] rounded-[32px] bg-gradient-to-r from-[#FF5F68] to-[#AE4BCE] overflow-hidden'>
         <div
-          className="absolute -right-3/4 -bottom-3/4 -translate-y-16 inset-0 bg-[url('https://res.cloudinary.com/duvx9lwgf/image/upload/v1755526497/solar-eclipse_vrzwpk.png')] 
-               bg-fill bg-center opacity-20"
+          className='absolute -right-3/4 -bottom-3/4 -translate-y-16 inset-0 bg-fill bg-center opacity-20'
+          style={{ backgroundImage: `url(${optimizedUrl})` }}
         ></div>
         <div className='flex flex-col gap-8 p-10 relative z-10'>
           <SunIcon />
