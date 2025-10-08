@@ -1,10 +1,10 @@
-import Apod from '@/components/apod/Apod';
+// import Apod from '@/components/apod/Apod';
 import DwarfPlanets from '@/components/dwarf/DwarfPlanets';
 import Eclipse from '@/components/eclipse/Eclipse';
 import Fact from '@/components/fact/Fact';
 import GetStarted from '@/components/getstarted/GetStarted';
 import PlanetsCarousel from '@/components/planets/PlanetsCarousel';
-import { getApod } from '@/lib/apodData';
+// import { getApod } from '@/lib/apodData';
 import { getDwarf } from '@/lib/dwarf';
 import { getEclipse } from '@/lib/eclipse';
 import getFactOfTheDay from '@/lib/fact';
@@ -17,7 +17,7 @@ export default async function Home() {
   const eclipse = await getEclipse();
   const started = await getStarted();
   const dwarf = await getDwarf();
-  const apod = await getApod();
+  // const apod = await getApod();
 
   return (
     <>
@@ -28,7 +28,7 @@ export default async function Home() {
       </div>
       <GetStarted started={started} />
       <DwarfPlanets dwarf={dwarf} />
-      <Apod apod={apod} />
+      {/* <Apod apod={apod} /> */}
     </>
   );
 }

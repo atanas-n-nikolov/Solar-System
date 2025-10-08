@@ -9,6 +9,8 @@ import { ThemeProvider } from '@/context/themeProvider';
 import './globals.css';
 import Header from '@/components/header/Header';
 import Footer from '@/components/footer/Footer';
+import { getUserFromJWT } from '@/lib/supabase/server';
+import { AuthProvider } from '@/context/authProvider';
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
@@ -61,6 +63,7 @@ export default async function RootLayout({
   const language = (cookieStore.get('language')?.value as 'en' | 'bg') || 'en';
   const theme = cookieStore.get('theme')?.value || 'white';
   const initialDarkMode = theme === 'dark';
+  const user = await getUserFromJWT();
   return (
     <html
       lang={language}
@@ -72,9 +75,11 @@ export default async function RootLayout({
       >
         <LanguageProvider initialLanguage={language}>
           <ThemeProvider initialDarkMode={initialDarkMode}>
-            <Header />
-            <main className='flex flex-col flex-1'>{children}</main>
-            <Footer />
+            <AuthProvider initialUser={user}>
+              <Header />
+              <main className='flex flex-col flex-1'>{children}</main>
+              <Footer />
+            </AuthProvider>
           </ThemeProvider>
         </LanguageProvider>
       </body>

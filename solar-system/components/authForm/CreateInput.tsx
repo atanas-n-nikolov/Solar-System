@@ -62,6 +62,7 @@ export default function CreateInput<T extends FieldValues>({
           {isPassword && (
             <button
               type='button'
+              aria-label={`${show ? 'hide' : 'show'} password`}
               onClick={() =>
                 field === 'password'
                   ? setShowPassword((p) => !p)

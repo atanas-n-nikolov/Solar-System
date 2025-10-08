@@ -7,8 +7,14 @@ import Logo_black from '@/public/logo-black.svg';
 import Image from 'next/image';
 import en from '@/locales/en.json';
 import bg from '@/locales/bg.json';
-import NavigationLinks, { NavLink } from '../header/NavigationLinks';
+import NavigationLinks from '@/components/header/NavigationLinks';
 import { usePathname } from 'next/navigation';
+
+export type NavLinkType = {
+  href: string;
+  label: string;
+  auth?: 'any' | 'guest' | 'user';
+};
 
 export default function Footer() {
   const { language } = useLanguage();
@@ -29,7 +35,7 @@ export default function Footer() {
     );
   }
 
-  const links: NavLink[] = [
+  const links: NavLinkType[] = [
     { href: '/about', label: t?.about, auth: 'any' },
     { href: '/terms', label: t?.terms, auth: 'any' },
     { href: '/contact', label: t?.contact_us, auth: 'any' },

@@ -40,7 +40,8 @@ export async function getUserFromJWT() {
 
   if (!user) return null;
 
-  const role = user.app_metadata?.role || 'authenticated';
-
-  return { ...user, role };
+  return {
+    id: user.id,
+    lastName: user.user_metadata?.last_name || '',
+  };
 }

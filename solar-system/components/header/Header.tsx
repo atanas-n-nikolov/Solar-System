@@ -12,41 +12,17 @@ import ThemeToggle from './ThemeToggle';
 import { useTheme } from '@/context/themeProvider';
 import { usePathname } from 'next/navigation';
 import Arrow from '@/components/svg/Arrow';
-import { useEffect, useState } from 'react';
-import { createClient } from '@/lib/supabase/client';
-import { User } from '@supabase/supabase-js';
+import { useAuth } from '@/context/authProvider';
 
 export default function Header() {
   const { language } = useLanguage();
   const { darkMode } = useTheme();
   const pathname = usePathname();
+  const { user, isLoggedIn } = useAuth();
 
   const translations = { en, bg };
   const t = translations[language];
   const logo = darkMode ? Logo_white : Logo_black;
-
-  const [user, setUser] = useState<User | null>(null);
-
-  useEffect(() => {
-    const supabase = createClient();
-
-    const getUser = async () => {
-      const { data } = await supabase.auth.getSession();
-      setUser(data.session?.user ?? null);
-    };
-
-    getUser();
-
-    const { data: listener } = supabase.auth.onAuthStateChange(
-      (_event, session) => {
-        setUser(session?.user ?? null);
-      }
-    );
-
-    return () => {
-      listener?.subscription.unsubscribe();
-    };
-  }, []);
 
   if (pathname === '/signup' || pathname === '/signin') {
     return (
@@ -65,16 +41,16 @@ export default function Header() {
       </Link>
       <div className='flex gap-8 items-center list-none font-light'>
         <nav className='flex gap-8'>
-          <NavigationLinks t={t} />
+          <NavigationLinks t={t} isLoggedIn={isLoggedIn} />
           <LanguageToggle />
         </nav>
         <div className='flex gap-4 items-center'>
           <ThemeToggle />
           <Link
-            href={user ? user.id : '/signup'}
+            href={user ? `/profile/${user.id}` : '/signup'}
             className='flex items-center gap-2 py-2 px-6 rounded-full text-white bg-gradient-to-r from-[#FF5F68] to-[#AE4BCE]'
           >
-            {user ? user.user_metadata?.last_name ?? 'Profile' : t.signup}
+            {user ? user.lastName ?? 'Profile' : t.signup}
             <Arrow />
           </Link>
         </div>

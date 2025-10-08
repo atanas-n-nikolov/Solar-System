@@ -82,6 +82,7 @@ export default function AuthForm<TFormData extends FieldValues>({
         />
         <button
           type='submit'
+          aria-label={t.signup}
           className='h-12 flex items-center gap-2 justify-center py-2 px-6 rounded-full text-white bg-gradient-to-r from-[#FF5F68] to-[#AE4BCE]'
         >
           {t.signup}

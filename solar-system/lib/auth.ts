@@ -39,8 +39,6 @@ export async function signInUser({
   email: string;
   password: string;
 }) {
-  const supabase = createClient();
-
   const { data, error } = await supabase.auth.signInWithPassword({
     email,
     password,
@@ -80,3 +78,30 @@ export async function authSection(
     return [];
   }
 }
+
+export async function getProfile(id: string) {
+  const isUser = await getUser();
+  if (isUser && isUser.id === id) {
+    try {
+      const { data, error } = await supabase
+        .from('profiles')
+        .select('*')
+        .eq('id', id)
+        .single();
+
+      if (error) throw error;
+      return data;
+    } catch (error) {
+      console.error('Грешка при извличане на профила:', error);
+      return null;
+    }
+  } else {
+    console.warn('Невалиден достъп: потребителят не съвпада с id');
+    return null;
+  }
+}
+
+const getUser = async () => {
+  const { data } = await supabase.auth.getSession();
+  return data.session?.user ?? null;
+};

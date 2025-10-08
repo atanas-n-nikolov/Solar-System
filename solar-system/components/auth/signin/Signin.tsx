@@ -63,11 +63,14 @@ export default function Signin({ section }: SigninProps) {
       router.push('/');
     } catch (err: unknown) {
       if (err instanceof Error) {
+        console.log(err.message);
         let message;
         switch (err.message) {
           case 'Invalid login credentials':
             message = 'Invalid email or password!';
             break;
+          case 'Email not confirmed':
+            message = 'Email not confirmed';
         }
         alert(message);
       } else alert('Login failed');

@@ -1,8 +1,8 @@
 export type Translation = {
-  title?: string;
-  description?: string;
-  keywords?: string[];
-  author?: string;
+  title: string;
+  description: string;
+  keywords: string[];
+  author: string;
   home: string;
   planets: string;
   leaderboard: string;
