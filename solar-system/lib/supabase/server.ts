@@ -40,8 +40,37 @@ export async function getUserFromJWT() {
 
   if (!user) return null;
 
+  const { data: profile, error } = await supabase
+    .from('users')
+    .select('*')
+    .eq('id', user.id)
+    .single();
+
+  if (error || !profile) {
+    console.error('Error fetching user profile:', error?.message);
+    return null;
+  }
+
   return {
-    id: user.id,
-    lastName: user.user_metadata?.last_name || '',
+    id: profile.id,
+    firstName: profile.first_name,
+    preferred_lang: profile.preferred_lang,
+    preferred_theme: profile.preferred_theme,
   };
+}
+
+export async function getUser({ id }: { id: string }) {
+  const supabase = await createServerSupabaseClient();
+  const { data: profile, error } = await supabase
+    .from('users')
+    .select('*')
+    .eq('id', id)
+    .single();
+
+  if (error) {
+    console.error('Error fetching user profile:', error.message);
+    return null;
+  }
+
+  return profile;
 }

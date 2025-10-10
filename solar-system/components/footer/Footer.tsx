@@ -41,6 +41,21 @@ export default function Footer() {
     { href: '/contact', label: t?.contact_us, auth: 'any' },
   ];
 
+  if (pathname.startsWith('/profile/')) {
+    return (
+      <footer className='w-full h-[88px] max-w-[1216px] mx-auto flex py-6 items-center justify-between'>
+        <div className='flex gap-8 items-center list-none font-light'>
+          <nav className='flex gap-8'>
+            <NavigationLinks links={links} t={t} />
+          </nav>
+        </div>
+        <p className='font-light text-[color:var(--muted-text)]'>
+          © 2025 Solar System - All Rights Reserved
+        </p>
+      </footer>
+    );
+  }
+
   return (
     <footer className='w-full max-w-[1216px] mx-auto flex py-6 items-center justify-between'>
       <Link href='/'>

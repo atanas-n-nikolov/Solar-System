@@ -30,10 +30,10 @@ export const ThemeProvider = ({
   const [darkMode, setDarkMode] = useState(initialDarkMode);
 
   useEffect(() => {
-    Cookies.set('theme', darkMode ? 'dark' : 'white', { expires: 365 });
+    Cookies.set('theme', darkMode ? 'dark' : 'light', { expires: 365 });
     document.documentElement.setAttribute(
       'data-theme',
-      darkMode ? 'dark' : 'white'
+      darkMode ? 'dark' : 'light'
     );
   }, [darkMode]);
 

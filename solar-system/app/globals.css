@@ -140,6 +140,10 @@ body {
   border-radius: 9999px;
 }
 
+.profile-ring {
+  position: relative;
+}
+
 .gradient-ring::after {
   content: '';
   position: absolute;
@@ -163,6 +167,25 @@ body {
   box-shadow: 0px 1px 8px 0px #3f486729;
 }
 
-.test3:hover {
-  box-shadow: 0px 1px 8px 0px rgba(63, 72, 103, 0.16);
+.profile-ring::after {
+  content: '';
+  position: absolute;
+  border-radius: 8px;
+  inset: 0;
+  padding: 1px;
+  background: linear-gradient(90deg, #ff5f68 0%, #ae4bce 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: destination-out;
+  mask-composite: exclude;
+  opacity: 1;
+  pointer-events: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Edge */
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none; /* IE и Edge */
+  scrollbar-width: none; /* Firefox */
 }

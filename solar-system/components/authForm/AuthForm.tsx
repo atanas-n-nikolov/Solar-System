@@ -73,7 +73,7 @@ export default function AuthForm<TFormData extends FieldValues>({
             repassword: t.form_repeat_password,
           }}
           iconMap={{
-            firstName: <UserIcon />,
+            firstName: <UserIcon width={20} height={20} fill='#8C92AF' />,
             lastName: <UserIcon />,
             email: <EmailIcon />,
             password: <LockIcon />,

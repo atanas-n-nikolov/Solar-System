@@ -1,13 +1,25 @@
 'use client';
+import { useAuth } from '@/context/authProvider';
 import { useLanguage } from '@/context/languageProvider';
+import UpdateLang from '@/lib/auth';
 
 export default function LanguageToggle() {
   const { language, setLanguage } = useLanguage();
+  const { user } = useAuth();
 
   const isBg = language === 'bg';
 
-  const toggleLanguage = () => {
-    setLanguage(isBg ? 'en' : 'bg');
+  const toggleLanguage = async () => {
+    const newLang = isBg ? 'en' : 'bg';
+    setLanguage(newLang);
+
+    if (user) {
+      try {
+        await UpdateLang(user.id, newLang);
+      } catch (err) {
+        console.error(err);
+      }
+    }
   };
 
   return (

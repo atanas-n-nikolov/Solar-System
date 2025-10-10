@@ -60,15 +60,21 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   const cookieStore = await cookies();
-  const language = (cookieStore.get('language')?.value as 'en' | 'bg') || 'en';
-  const theme = cookieStore.get('theme')?.value || 'white';
-  const initialDarkMode = theme === 'dark';
   const user = await getUserFromJWT();
+  const language =
+    (user?.preferred_lang as 'en' | 'bg') ||
+    (cookieStore.get('language')?.value as 'en' | 'bg') ||
+    'en';
+
+  const theme =
+    user?.preferred_theme || cookieStore.get('theme')?.value || 'light';
+
+  const initialDarkMode = theme === 'dark';
   return (
     <html
       lang={language}
       suppressHydrationWarning
-      data-theme={initialDarkMode ? 'dark' : 'white'}
+      data-theme={initialDarkMode ? 'dark' : 'light'}
     >
       <body
         className={`flex flex-col min-h-screen ${montserrat.variable} ${roboto.variable} ${orbitron.variable}`}

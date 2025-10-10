@@ -4,6 +4,8 @@ export type Started = {
   title_bg: string;
   description_en: string;
   description_bg: string;
-  image_url: string;
-  image_url_2: string;
+  image_url_light: string;
+  image_url_2_light: string;
+  image_url_dark: string;
+  image_url_2_dark: string;
 };

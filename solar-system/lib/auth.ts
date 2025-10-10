@@ -105,3 +105,18 @@ const getUser = async () => {
   const { data } = await supabase.auth.getSession();
   return data.session?.user ?? null;
 };
+
+export default async function UpdateLang(userId: string, lang: 'en' | 'bg') {
+  const { data, error } = await supabase
+    .from('users')
+    .update({ preferred_lang: lang })
+    .eq('id', userId)
+    .select();
+
+  if (error) {
+    console.error('Error updating language:', error.message);
+    return null;
+  }
+
+  return data;
+}

@@ -1,8 +1,19 @@
-export default function UserIcon(props: React.SVGProps<SVGSVGElement>) {
+type UserIconProps = {
+  width?: number;
+  height?: number;
+  bgFill?: string;
+} & React.SVGProps<SVGSVGElement>;
+
+export default function UserIcon({
+  width,
+  height,
+  bgFill,
+  ...props
+}: UserIconProps) {
   return (
     <svg
-      width={20}
-      height={20}
+      width={width}
+      height={height}
       viewBox='0 0 20 20'
       fill='none'
       xmlns='http://www.w3.org/2000/svg'
@@ -12,7 +23,7 @@ export default function UserIcon(props: React.SVGProps<SVGSVGElement>) {
         fillRule='evenodd'
         clipRule='evenodd'
         d='M5.41667 6.24999C5.41667 8.77916 7.47083 10.8333 10 10.8333C12.5292 10.8333 14.5833 8.77916 14.5833 6.24999C14.5833 3.72082 12.5292 1.66666 10 1.66666C7.47083 1.66666 5.41667 3.72082 5.41667 6.24999ZM6.66667 6.24999C6.66667 4.41249 8.1625 2.91666 10 2.91666C11.8375 2.91666 13.3333 4.41249 13.3333 6.24999C13.3333 8.08749 11.8375 9.58332 10 9.58332C8.1625 9.58332 6.66667 8.08749 6.66667 6.24999ZM15.4749 15.3417L16.3207 18.4958L17.529 18.1708L16.6832 15.0167C16.2207 13.2917 14.6457 12.0833 12.8582 12.0833H7.14154C5.34987 12.0833 3.77904 13.2875 3.31654 15.0167L2.4707 18.1708L3.67904 18.4958L4.52487 15.3417C4.84154 14.1583 5.91654 13.3333 7.14154 13.3333H12.8582C14.0832 13.3333 15.1582 14.1583 15.4749 15.3417Z'
-        fill='#8C92AF'
+        fill={bgFill}
       />
     </svg>
   );

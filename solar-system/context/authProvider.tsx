@@ -1,9 +1,9 @@
 'use client';
 
 import { createContext, useContext, useEffect, useState } from 'react';
-import { createClient } from '@/lib/supabase/client'; // ✅ използваме твоята функция
+import { createClient } from '@/lib/supabase/client';
 
-type UserData = { id: string; lastName: string } | null;
+type UserData = { id: string; firstName: string } | null;
 
 interface AuthContextType {
   user: UserData;
@@ -31,7 +31,7 @@ export function AuthProvider({
         if (session?.user) {
           setUser({
             id: session.user.id,
-            lastName: session.user.user_metadata?.last_name || '',
+            firstName: session.user.user_metadata?.first_name || '',
           });
         } else {
           setUser(null);
@@ -50,7 +50,7 @@ export function AuthProvider({
     } else {
       setUser({
         id: data.user.id,
-        lastName: data.user.user_metadata?.last_name || '',
+        firstName: data.user.user_metadata?.first_name || '',
       });
     }
     setIsLoading(false);

@@ -13,6 +13,7 @@ import { useTheme } from '@/context/themeProvider';
 import { usePathname } from 'next/navigation';
 import Arrow from '@/components/svg/Arrow';
 import { useAuth } from '@/context/authProvider';
+import UserIcon from '../svg/UserIcon';
 
 export default function Header() {
   const { language } = useLanguage();
@@ -50,8 +51,12 @@ export default function Header() {
             href={user ? `/profile/${user.id}` : '/signup'}
             className='flex items-center gap-2 py-2 px-6 rounded-full text-white bg-gradient-to-r from-[#FF5F68] to-[#AE4BCE]'
           >
-            {user ? user.lastName ?? 'Profile' : t.signup}
-            <Arrow />
+            {user ? user.firstName ?? 'Profile' : t.signup}
+            {user ? (
+              <UserIcon width={16} height={16} bgFill='white' />
+            ) : (
+              <Arrow />
+            )}
           </Link>
         </div>
       </div>
