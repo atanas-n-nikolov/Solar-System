@@ -18,24 +18,16 @@ interface NavigationLinksProps {
 }
 
 export default function NavigationLinks({
-  isLoggedIn,
   links: linksArr,
   t,
   onLinkClick,
 }: NavigationLinksProps) {
-  const links: NavLinkType[] = linksArr
-    ? linksArr
-    : [
-        { href: '/', label: t.home ?? '', auth: 'guest' },
-        { href: '/planets', label: t.planets ?? '', auth: 'guest' },
-        { href: '/contact', label: t.contact_us ?? '', auth: 'guest' },
-        ...(isLoggedIn
-          ? ([
-              { href: '/score', label: t.leaderboard ?? '', auth: 'user' },
-              { href: '/logout', label: t.logout ?? '', auth: 'user' },
-            ] as const)
-          : []),
-      ];
+  const links: NavLinkType[] = linksArr || [
+    { href: '/', label: t.home ?? '', auth: 'guest' },
+    { href: '/planets', label: t.planets ?? '', auth: 'guest' },
+    { href: '/bodies', label: t.bodies ?? '', auth: 'guest' },
+    { href: '/contact', label: t.contact_us ?? '', auth: 'guest' },
+  ];
 
   return (
     <ul className='flex gap-8'>

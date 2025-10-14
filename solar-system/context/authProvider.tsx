@@ -1,7 +1,6 @@
 'use client';
 
-import { createContext, useContext, useEffect, useState } from 'react';
-import { createClient } from '@/lib/supabase/client';
+import { createContext, useContext, useState } from 'react';
 
 type UserData = { id: string; firstName: string } | null;
 
@@ -14,6 +13,12 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | null>(null);
 
+async function fetchCurrentUser(): Promise<UserData> {
+  const res = await fetch('/api/me', { credentials: 'include' });
+  if (!res.ok) return null;
+  return res.json();
+}
+
 export function AuthProvider({
   children,
   initialUser,
@@ -23,36 +28,11 @@ export function AuthProvider({
 }) {
   const [user, setUser] = useState<UserData>(initialUser);
   const [isLoading, setIsLoading] = useState(false);
-  const supabase = createClient();
-
-  useEffect(() => {
-    const { data: listener } = supabase.auth.onAuthStateChange(
-      (_event, session) => {
-        if (session?.user) {
-          setUser({
-            id: session.user.id,
-            firstName: session.user.user_metadata?.first_name || '',
-          });
-        } else {
-          setUser(null);
-        }
-      }
-    );
-
-    return () => listener.subscription.unsubscribe();
-  }, [supabase]);
 
   const refreshUser = async () => {
     setIsLoading(true);
-    const { data, error } = await supabase.auth.getUser();
-    if (error || !data.user) {
-      setUser(null);
-    } else {
-      setUser({
-        id: data.user.id,
-        firstName: data.user.user_metadata?.first_name || '',
-      });
-    }
+    const data = await fetchCurrentUser();
+    setUser(data);
     setIsLoading(false);
   };
 

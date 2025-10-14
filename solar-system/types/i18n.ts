@@ -5,6 +5,7 @@ export type Translation = {
   author: string;
   home: string;
   planets: string;
+  bodies: string;
   leaderboard: string;
   signup: string;
   login: string;

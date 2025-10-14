@@ -4,8 +4,8 @@ import { ApodData } from '@/types/apodData';
 import en from '@/locales/en.json';
 import bg from '@/locales/bg.json';
 import { useLanguage } from '@/context/languageProvider';
-import NasaLogo from '../svg/NasaLogo';
-import Calendar from '../svg/Calendar';
+import NasaLogo from '@/components/svg/NasaLogo';
+import Calendar from '@/components/svg/Calendar';
 import Image from 'next/image';
 
 export default function Apod({ apod }: { apod: ApodData | null }) {

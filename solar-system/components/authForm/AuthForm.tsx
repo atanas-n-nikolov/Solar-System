@@ -8,9 +8,9 @@ import bg from '@/locales/bg.json';
 import UserIcon from '@/components/svg/UserIcon';
 import EmailIcon from '@/components/svg/EmailIcon';
 import LockIcon from '@/components/svg/LockIcon';
-import Arrow from '@/components/svg/Arrow';
 import Link from 'next/link';
 import GoogleLogo from '@/components/svg/GoogleLogo';
+import ArrowNext from '@/components/svg/ArrowNext';
 
 import CreateInput from './CreateInput';
 import { ZodObject, ZodRawShape } from 'zod';
@@ -86,7 +86,7 @@ export default function AuthForm<TFormData extends FieldValues>({
           className='h-12 flex items-center gap-2 justify-center py-2 px-6 rounded-full text-white bg-gradient-to-r from-[#FF5F68] to-[#AE4BCE]'
         >
           {t.signup}
-          <Arrow />
+          <ArrowNext />
         </button>
       </div>
       <div className='flex items-center gap-4'>

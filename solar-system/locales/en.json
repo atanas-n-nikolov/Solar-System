@@ -26,6 +26,7 @@
   "planet_title": "Explore the Solar System",
   "home": "Home",
   "planets": "Planets",
+  "bodies": "Bodies",
   "leaderboard": "Leaderboard",
   "signup": "Get started",
   "login": "Log in",
@@ -54,5 +55,21 @@
   "auth_password": "Password:",
   "auth_firstname": "First name:",
   "auth_lastname": "Last name:",
-  "auth_repeat_password": "Repeat password:"
+  "auth_repeat_password": "Repeat password:",
+  "profile": {
+    "full_name": "Full name:",
+    "points": "Points:",
+    "completed": "Completed:",
+    "total_questions_answered": "Total questions answered",
+    "correct_answers": "Correct answers",
+    "wrong_answers": "Wrong answers",
+    "welcome_back": "Welcome back!",
+    "welcome_msg": "Keep playing to collect all the badges. Good luck, explorer!",
+    "start": "Start",
+    "start_game": "Start game",
+    "level": "Level",
+    "quideline": "Test guidelines",
+    "quideline_1": "Give your opinion on each statement",
+    "quideline_2": "You cannot skip questions, but you can return back to it later"
+  }
 }

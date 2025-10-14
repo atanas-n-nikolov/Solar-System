@@ -4,10 +4,13 @@ import { ReactNode, useContext, useEffect, useState } from 'react';
 import { createContext } from 'react';
 import Cookies from 'js-cookie';
 
+type Theme = 'light' | 'dark';
+
 type ThemeContextType = {
-  darkMode: boolean;
+  theme: Theme;
   toggleTheme: () => void;
-  setDarkMode: (value: boolean) => void;
+  setTheme: (theme: Theme) => void;
+  darkMode: boolean;
 };
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
@@ -27,20 +30,22 @@ export const ThemeProvider = ({
   children: ReactNode;
   initialDarkMode: boolean;
 }) => {
-  const [darkMode, setDarkMode] = useState(initialDarkMode);
+  const initialTheme: Theme = initialDarkMode ? 'dark' : 'light';
+  const [theme, setTheme] = useState<Theme>(initialTheme);
 
   useEffect(() => {
-    Cookies.set('theme', darkMode ? 'dark' : 'light', { expires: 365 });
-    document.documentElement.setAttribute(
-      'data-theme',
-      darkMode ? 'dark' : 'light'
-    );
-  }, [darkMode]);
+    Cookies.set('theme', theme, { expires: 365 });
+    document.documentElement.setAttribute('data-theme', theme);
+  }, [theme]);
 
-  const toggleTheme = () => setDarkMode((prev) => !prev);
+  const toggleTheme = () => {
+    setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));
+  };
+
+  const darkMode = theme === 'dark';
 
   return (
-    <ThemeContext.Provider value={{ darkMode, toggleTheme, setDarkMode }}>
+    <ThemeContext.Provider value={{ theme, toggleTheme, setTheme, darkMode }}>
       {children}
     </ThemeContext.Provider>
   );

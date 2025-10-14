@@ -9,7 +9,6 @@ export type UserProfile = {
   role: string;
   wrong_answers: number;
   avatar: string;
-  level_points: number;
   preferred_lang: string;
   preferred_theme: string;
 };

@@ -1,7 +1,7 @@
 'use client';
 import { useAuth } from '@/context/authProvider';
 import { useLanguage } from '@/context/languageProvider';
-import UpdateLang from '@/lib/auth';
+import { UpdateLang } from '@/lib/auth';
 
 export default function LanguageToggle() {
   const { language, setLanguage } = useLanguage();

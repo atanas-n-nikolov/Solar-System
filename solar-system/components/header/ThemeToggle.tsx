@@ -1,9 +1,25 @@
 import { useTheme } from '@/context/themeProvider';
 import DarkModeIcon from '@/components/svg/DarkModeIcon';
 import LightModeIcon from '@/components/svg/LightModeIcon';
+import { useAuth } from '@/context/authProvider';
+import { UpdateTheme } from '@/lib/auth';
 
 export default function ThemeToggle() {
-  const { darkMode, toggleTheme } = useTheme();
+  const { theme, setTheme, darkMode } = useTheme();
+  const { user } = useAuth();
+
+  const handleToggle = async () => {
+    const newTheme = theme === 'dark' ? 'light' : 'dark';
+    setTheme(newTheme);
+
+    if (user) {
+      try {
+        await UpdateTheme(user.id, newTheme);
+      } catch (err) {
+        console.error(err);
+      }
+    }
+  };
 
   return (
     <label
@@ -16,7 +32,7 @@ export default function ThemeToggle() {
         type='checkbox'
         id='darkmode-toggle'
         checked={darkMode}
-        onChange={toggleTheme}
+        onChange={handleToggle}
         className='sr-only'
         aria-label='Toggle theme mode'
       />

@@ -3,7 +3,10 @@ import { Levels as LevelsProps } from '@/types/levels';
 
 export async function getLevels(): Promise<LevelsProps[]> {
   const supabase = createClient();
-  const { data, error } = await supabase.from('levels').select('*');
+  const { data, error } = await supabase
+    .from('levels')
+    .select('*')
+    .order('level', { ascending: true });
 
   if (error || !data || data.length === 0) {
     return [];

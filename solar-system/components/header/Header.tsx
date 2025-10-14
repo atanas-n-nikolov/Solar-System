@@ -11,9 +11,9 @@ import LanguageToggle from './LanguageToggle';
 import ThemeToggle from './ThemeToggle';
 import { useTheme } from '@/context/themeProvider';
 import { usePathname } from 'next/navigation';
-import Arrow from '@/components/svg/Arrow';
 import { useAuth } from '@/context/authProvider';
-import UserIcon from '../svg/UserIcon';
+import UserIcon from '@/components/svg/UserIcon';
+import ArrowNext from '@/components/svg/ArrowNext';
 
 export default function Header() {
   const { language } = useLanguage();
@@ -45,19 +45,47 @@ export default function Header() {
           <NavigationLinks t={t} isLoggedIn={isLoggedIn} />
           <LanguageToggle />
         </nav>
-        <div className='flex gap-4 items-center'>
+        <div className='flex gap-4 items-center relative'>
           <ThemeToggle />
-          <Link
-            href={user ? `/profile/${user.id}` : '/signup'}
-            className='flex items-center gap-2 py-2 px-6 rounded-full text-white bg-gradient-to-r from-[#FF5F68] to-[#AE4BCE]'
-          >
-            {user ? user.firstName ?? 'Profile' : t.signup}
-            {user ? (
-              <UserIcon width={16} height={16} bgFill='white' />
-            ) : (
-              <Arrow />
-            )}
-          </Link>
+
+          {user ? (
+            <div className='relative group'>
+              <Link
+                href={`/profile/${user.id}`}
+                className='flex items-center gap-2 py-2 px-6 rounded-full text-white bg-gradient-to-r from-[#FF5F68] to-[#AE4BCE]'
+              >
+                {user.firstName ?? 'Profile'}
+                <UserIcon width={16} height={16} bgFill='white' />
+              </Link>
+
+              <ul className='absolute py-4 left-0 w-40 bg-white shadow-lg rounded-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity duration-200 z-50 pointer-events-auto'>
+                <li className='p-2'>
+                  <Link
+                    href='/score'
+                    className='w-full text-left px-4 py-2 hover:bg-gray-100 text-gray-800'
+                  >
+                    Leaderboard
+                  </Link>
+                </li>
+                <li className='p-2'>
+                  <Link
+                    href='/logout'
+                    className='w-full text-left px-4 py-2 hover:bg-gray-100 text-gray-800'
+                  >
+                    Logout
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          ) : (
+            <Link
+              href='/signup'
+              className='flex items-center gap-2 py-2 px-6 rounded-full text-white bg-gradient-to-r from-[#FF5F68] to-[#AE4BCE]'
+            >
+              {t.signup}
+              <ArrowNext />
+            </Link>
+          )}
         </div>
       </div>
     </header>

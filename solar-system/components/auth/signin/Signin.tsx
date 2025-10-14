@@ -1,7 +1,6 @@
 'use client';
 import { z } from 'zod';
 import { signInUser } from '@/lib/auth';
-import { useRouter } from 'next/navigation';
 import en from '@/locales/en.json';
 import bg from '@/locales/bg.json';
 import { useLanguage } from '@/context/languageProvider';
@@ -26,7 +25,6 @@ type SigninProps = {
 export default function Signin({ section }: SigninProps) {
   const { language } = useLanguage();
   const t = { en, bg }[language];
-  const router = useRouter();
 
   const signin = section[0];
 
@@ -60,7 +58,7 @@ export default function Signin({ section }: SigninProps) {
         password: data.password,
       });
       alert('Logged in successfully!');
-      router.push('/');
+      window.location.href = '/';
     } catch (err: unknown) {
       if (err instanceof Error) {
         console.log(err.message);

@@ -5,10 +5,12 @@ import bg from '@/locales/bg.json';
 import { Started } from '@/types/started';
 import Link from 'next/link';
 import { useTheme } from '@/context/themeProvider';
-import Arrow from '@/components/svg/Arrow';
 import Image from 'next/image';
+import ArrowBack from '@/components/svg/ArrowNext';
+import { useAuth } from '@/context/authProvider';
 
 export default function GetStarted({ started }: { started: Started | null }) {
+  const user = useAuth();
   const { language } = useLanguage();
   const { darkMode } = useTheme();
   const translations = { en, bg };
@@ -44,11 +46,11 @@ export default function GetStarted({ started }: { started: Started | null }) {
           className='flex items-center gap-2 py-2 px-6 rounded-full text-white bg-gradient-to-r from-[#FF5F68] to-[#AE4BCE]'
         >
           {t.signup}
-          <Arrow />
+          <ArrowBack />
         </Link>
       </div>
       <aside className='h-[510px] relative'>
-        <Link href='/signup'>
+        <Link href={user.user ? `/profile/${user.user.id}` : '/signup'}>
           <Image
             src={cardProfile}
             alt='card profile'
@@ -57,7 +59,7 @@ export default function GetStarted({ started }: { started: Started | null }) {
             className='absolute left-0 top-0 object-cover rounded-3xl shadow-[0px_2px_21px_0px_#7680A126] transition hover:scale-105'
           />
         </Link>
-        <Link href='/signup'>
+        <Link href={user.user ? `/profile/${user.user.id}` : '/signup'}>
           <Image
             src={cardGame}
             alt='game profile'

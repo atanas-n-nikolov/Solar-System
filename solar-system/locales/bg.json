@@ -26,6 +26,7 @@
   "planet_title": "Изследвай Слънчевата система",
   "home": "Начало",
   "planets": "Планети",
+  "bodies": "Обекти",
   "leaderboard": "Класации",
   "signup": "Започни",
   "login": "Влез",
@@ -54,5 +55,21 @@
   "auth_password": "Парола:",
   "auth_firstname": "Име:",
   "auth_lastname": "Фамилия:",
-  "auth_repeat_password": "Повтори паролата:"
+  "auth_repeat_password": "Повтори паролата:",
+  "profile": {
+    "full_name": "Пълно име:",
+    "points": "Точки:",
+    "completed": "Изпълнено:",
+    "total_questions_answered": "Общо отговорени въпроси",
+    "correct_answers": "Вярни отговори",
+    "wrong_answers": "Грешни отговори",
+    "welcome_back": "Добре дошъл!",
+    "welcome_msg": "Продължи и събери всички значки! Успех, изследователю!",
+    "start": "Започни",
+    "start_game": "Започни играта",
+    "level": "Ниво",
+    "quideline": "Инструкции",
+    "quideline_1": "Дай мнение за всяко твърдение",
+    "quideline_2": "Не можеш да пропуснеш въпросите, но можеш да се върнеш към тях по-късно"
+  }
 }

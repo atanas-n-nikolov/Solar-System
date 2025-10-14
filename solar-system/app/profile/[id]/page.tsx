@@ -1,6 +1,6 @@
 import Profile from '@/components/profile/Profile';
-import { getLevels } from '@/lib/levels';
-import { getUser } from '@/lib/supabase/server';
+import { getUserFromJWT } from '@/lib/supabase/server';
+import { redirect } from 'next/navigation';
 
 export default async function ProfilePage({
   params,
@@ -8,8 +8,15 @@ export default async function ProfilePage({
   params: Promise<{ id: string }>;
 }) {
   const resolvedParams = await params;
-  const profile = await getUser({ id: resolvedParams.id });
-  const levels = await getLevels();
+  const currentUser = await getUserFromJWT();
 
-  return <Profile profile={profile} levels={levels} />;
+  if (!currentUser) {
+    redirect('/login');
+  }
+
+  if (currentUser.id !== resolvedParams.id) {
+    redirect(`/profile/${currentUser.id}`);
+  }
+
+  return <Profile id={resolvedParams.id} />;
 }

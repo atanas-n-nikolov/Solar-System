@@ -1,4 +1,4 @@
-export default function Arrow(props: React.SVGProps<SVGSVGElement>) {
+export default function ArrowNext(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       width={16}

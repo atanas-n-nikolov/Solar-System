@@ -4,7 +4,7 @@ import en from '@/locales/en.json';
 import bg from '@/locales/bg.json';
 import { Dwarf } from '@/types/dwarf';
 import Link from 'next/link';
-import Arrow from '@/components/svg/Arrow';
+import ArrowNext from '@/components/svg/ArrowNext';
 
 export default function DwarfPlanets({ dwarf }: { dwarf: Dwarf | null }) {
   const { language } = useLanguage();
@@ -54,7 +54,7 @@ export default function DwarfPlanets({ dwarf }: { dwarf: Dwarf | null }) {
           className='flex items-center gap-2 py-2 px-6 rounded-full text-white bg-gradient-to-r from-[#FF5F68] to-[#AE4BCE]'
         >
           {t.dwarf_link}
-          <Arrow />
+          <ArrowNext />
         </Link>
       </header>
       <aside className='relative h-[296px] w-[758px] justify-center flex flex-col gap-2 p-10 bg-[#42465E] rounded-[32px] overflow-hidden'>
